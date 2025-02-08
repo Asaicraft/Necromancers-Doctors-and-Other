@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NedaoObjects.Bonuses;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,12 @@ namespace NedaoObjects;
 /// Implements <see cref="ICollection{T}"/> and is designed to be extended in derived classes.
 /// </summary>
 /// <typeparam name="T">The numeric type of the property, constrained to <see cref="IBinaryNumber{T}"/>.</typeparam>
-public class NedaoProperty<T> : ICollection<Bonus<T>> where T : struct, IBinaryNumber<T>
+public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struct, IBinaryNumber<T>
 {
     /// <summary>
     /// The list of bonuses applied to this property.
     /// </summary>
-    protected readonly List<Bonus<T>> Bonuses = [];
+    protected readonly List<PropertyModifier<T>> Bonuses = [];
 
     private T _baseValue;
 
@@ -99,7 +100,7 @@ public class NedaoProperty<T> : ICollection<Bonus<T>> where T : struct, IBinaryN
     public bool IsReadOnly => false;
 
     /// <inheritdoc />
-    public void Add(Bonus<T> bonus)
+    public void Add(PropertyModifier<T> bonus)
     {
         AddCore(bonus);
     }
@@ -111,25 +112,25 @@ public class NedaoProperty<T> : ICollection<Bonus<T>> where T : struct, IBinaryN
     }
 
     /// <inheritdoc />
-    public bool Contains(Bonus<T> item)
+    public bool Contains(PropertyModifier<T> item)
     {
         return Bonuses.Contains(item);
     }
 
     /// <inheritdoc />
-    public void CopyTo(Bonus<T>[] array, int arrayIndex)
+    public void CopyTo(PropertyModifier<T>[] array, int arrayIndex)
     {
         Bonuses.CopyTo(array, arrayIndex);
     }
 
     /// <inheritdoc />
-    public bool Remove(Bonus<T> item)
+    public bool Remove(PropertyModifier<T> item)
     {
         return RemoveCore(item);
     }
 
     /// <inheritdoc />
-    public IEnumerator<Bonus<T>> GetEnumerator()
+    public IEnumerator<PropertyModifier<T>> GetEnumerator()
     {
         return Bonuses.GetEnumerator();
     }
@@ -147,7 +148,7 @@ public class NedaoProperty<T> : ICollection<Bonus<T>> where T : struct, IBinaryN
     /// Designed to be overridden in derived classes.
     /// </summary>
     /// <param name="bonus">The bonus to add.</param>
-    protected virtual void AddCore(Bonus<T> bonus)
+    protected virtual void AddCore(PropertyModifier<T> bonus)
     {
         Bonuses.Add(bonus);
         InvalidState();
@@ -155,7 +156,7 @@ public class NedaoProperty<T> : ICollection<Bonus<T>> where T : struct, IBinaryN
 
     /// <summary>
     /// Clears all bonuses from the collection.
-    /// Calls <see cref="RemoveCore(Bonus{T})"/> for each bonus to ensure proper cleanup.
+    /// Calls <see cref="RemoveCore(PropertyModifier{T})"/> for each bonus to ensure proper cleanup.
     /// Designed to be overridden in derived classes.
     /// </summary>
     protected virtual void ClearCore()
@@ -177,7 +178,7 @@ public class NedaoProperty<T> : ICollection<Bonus<T>> where T : struct, IBinaryN
     /// </summary>
     /// <param name="bonus">The bonus to remove.</param>
     /// <returns>True if the bonus was successfully removed; otherwise, false.</returns>
-    protected virtual bool RemoveCore(Bonus<T> bonus)
+    protected virtual bool RemoveCore(PropertyModifier<T> bonus)
     {
         var result = Bonuses.Remove(bonus);
 
