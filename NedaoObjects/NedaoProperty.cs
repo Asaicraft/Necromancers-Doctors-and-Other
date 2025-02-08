@@ -85,7 +85,7 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
         for (var i = 0; i < bonuses.Length; i++)
         {
             var bonus = bonuses[i];
-            TotalBonus = bonus.Affect(this);
+            TotalBonus = bonus.Modify(this);
         }
 
         return TotalBonus;
