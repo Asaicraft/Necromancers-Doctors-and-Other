@@ -1,12 +1,12 @@
 ﻿using NedaoObjects.Effects;
-using NedaoObjects.Gaints;
+using NedaoObjects.Gains;
 using System.Collections.Frozen;
 using System.ComponentModel;
 using System.Reflection.Emit;
 
 namespace NedaoObjects;
 
-public abstract partial class NedaoObject
+public partial class NedaoObject
 {
     public const float AbsoluteMaxHelth = 2000;
     public const int MaxLevel = 25;

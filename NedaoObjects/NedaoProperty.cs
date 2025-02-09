@@ -21,7 +21,7 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
     /// </summary>
     protected readonly List<PropertyModifier<T>> Bonuses = [];
 
-    private T _baseValue;
+    protected T _baseValue;
 
     /// <summary>
     /// Gets or sets the base value of the property.
@@ -59,6 +59,7 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
     protected virtual void SetBaseValue(T value)
     {
         _baseValue = value;
+        InvalidState();
     }
 
     /// <summary>

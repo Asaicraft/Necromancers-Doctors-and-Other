@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NedaoObjects.Gaints;
+namespace NedaoObjects.Gains;
 
 /// <summary>
 /// A simple gain modifier that increases attributes linearly per level.

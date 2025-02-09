@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NedaoObjects.Gaints;
+namespace NedaoObjects.Gains;
 
 /// <summary>
 /// Represents a base class for handling attribute gains when a hero levels up.
