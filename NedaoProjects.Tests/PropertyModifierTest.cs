@@ -98,4 +98,52 @@ public class PropertyModifierTest
         Assert.Equal(35, totalValue);
         Assert.Equal(25, totalBonus);
     }
+
+    [Fact]
+    public void OverrideModifierIgnoresPreviousBonuses()
+    {
+        var property = new NedaoProperty<float>()
+        {
+            BaseValue = 10
+        };
+
+        var cubingModifier = new OverrideCubingModifier();
+        var additiveModifier = new ValueModifier<float>
+        {
+            Value = 71,
+            Operation = ModifierOperation.Additive
+        };
+
+        property.Add(additiveModifier);
+        property.Add(cubingModifier);
+
+        var totalBonus = property.TotalBonus;
+        var totalValue = property.TotalValue;
+
+        // Expected values explanation:
+        // 1. AdditiveModifier adds 71 to the TotalBonus (but this is ignored later).
+        // 2. OverrideCubingModifier replaces TotalBonus with BaseValue^3 => 10^3 = 1000.
+        // 3. TotalValue = BaseValue + TotalBonus => 10 + 1000 = 1010.
+
+        Assert.Equal(1000, totalBonus);
+        Assert.Equal(1010, totalValue);
+    }
+
+    /// <summary>
+    /// A modifier that completely overrides the total bonus by cubing the base value.
+    /// </summary>
+    private class OverrideCubingModifier : PropertyModifier<float>
+    {
+
+        /// <summary>
+        /// Overrides the total bonus with the cube of the base value.
+        /// This modifier **ignores all previous bonuses** and directly sets the total bonus.
+        /// </summary>
+        /// <param name="property">The property being modified.</param>
+        /// <returns>The cubed base value as the new total bonus.</returns>
+        public override float Modify(NedaoProperty<float> property)
+        {
+            return MathF.Pow(property.BaseValue, 3);
+        }
+    }
 }
