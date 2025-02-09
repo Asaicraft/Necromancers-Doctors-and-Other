@@ -9,7 +9,7 @@ namespace NedaoObjects.Gaints;
 /// <summary>
 /// A simple gain modifier that increases attributes linearly per level.
 /// </summary>
-public sealed class SimpleGainModifier : GainModifier
+public class SimpleGainModifier : GainModifier
 {
     public readonly NedaoProperty<float> MaxHealth = [];
     public readonly NedaoProperty<float> Damage = [];

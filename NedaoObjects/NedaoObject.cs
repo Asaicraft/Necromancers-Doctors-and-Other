@@ -1,4 +1,5 @@
 ﻿using NedaoObjects.Effects;
+using NedaoObjects.Gaints;
 using System.Collections.Frozen;
 using System.ComponentModel;
 using System.Reflection.Emit;
@@ -50,6 +51,7 @@ public abstract partial class NedaoObject
 
     public readonly EffectsCollection Effects;
     public readonly AttackBehavior AttackBehavior;
+    public readonly GainModifier GainModifier;
 
     private bool _isDie = false;
     private int _exp = 0;
@@ -61,6 +63,7 @@ public abstract partial class NedaoObject
     {
         Effects = CreateEffectsCollection();
         AttackBehavior = CreateAttackBehavior();
+        GainModifier = CreateGainModifier();
     }
 
     public bool IsDie
@@ -168,6 +171,7 @@ public abstract partial class NedaoObject
 
     protected virtual void SetLevel(int level, int prevLevel)
     {
+        GainModifier.ApplyGain(this, level - prevLevel);
     }
 
     protected virtual EffectsCollection CreateEffectsCollection()
@@ -178,6 +182,11 @@ public abstract partial class NedaoObject
     protected virtual AttackBehavior CreateAttackBehavior()
     {
         return new(this);
+    }
+
+    protected virtual GainModifier CreateGainModifier()
+    {
+        return new SimpleGainModifier();
     }
 
     protected virtual int CalculateDamage(Damage damage)
