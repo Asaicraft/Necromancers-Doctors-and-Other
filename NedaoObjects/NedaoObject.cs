@@ -107,6 +107,11 @@ public partial class NedaoObject
         {
             var prevLevel = _level;
 
+            if(value < 1)
+            {
+                value = 1;
+            }
+
             _level = value;
 
             if (_level > MaxLevel)
