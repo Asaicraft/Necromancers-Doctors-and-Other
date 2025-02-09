@@ -131,7 +131,7 @@ public abstract partial class NedaoObject
         }
     }
 
-    public readonly NedaoProperty<float> MaxHelth = [];
+    public readonly NedaoProperty<float> MaxHealth = [];
 
     public readonly NedaoProperty<float> Damage = [];
 
