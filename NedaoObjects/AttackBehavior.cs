@@ -64,6 +64,6 @@ public class AttackBehavior(NedaoObject associatedObject)
     /// <returns>A new <see cref="Damage"/> instance.</returns>
     public virtual Damage CreateDamage(NedaoObject target)
     {
-        return new Damage(Owner, Owner.CurrentDamage, DamageType.Physical);
+        return new Damage(Owner, Owner.Damage, DamageType.Physical);
     }
 }
