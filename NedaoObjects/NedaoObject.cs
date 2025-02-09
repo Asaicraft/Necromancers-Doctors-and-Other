@@ -56,22 +56,6 @@ public abstract partial class NedaoObject
     private int _level = 1;
 
     private float _helth = 100;
-    private float _maxHelth = 100;
-    private float _damage = 10;
-    private float _armor = 0;
-    private float _speed = 100;
-    private float _attackSpeed = 100;
-    private float _attackRange = 150;
-    private float _baseAttackTime = 1.7f;
-
-    private float _currentHelth;
-    private float _currentMaxHelth;
-    private float _currentDamage;
-    private float _currentArmor;
-    private float _currentSpeed;
-    private float _currentAttackSpeed;
-    private float _currentAttackRange;
-    private float _currentBaseAttackTime;
 
     public NedaoObject()
     {
@@ -144,213 +128,22 @@ public abstract partial class NedaoObject
         set
         {
             _helth = value;
-            
-            SetHelth(_helth);
         }
     }
 
-    public float MaxHelth
-    {
-        get => _maxHelth;
-        set
-        {
-            _maxHelth = value;
+    public readonly NedaoProperty<float> MaxHelth = [];
 
-            if(_maxHelth < 0)
-            {
-                _maxHelth = 0;
-            }
+    public readonly NedaoProperty<float> Damage = [];
 
-            if (_maxHelth > AbsoluteMaxHelth)
-            {
-                _maxHelth = AbsoluteMaxHelth;
-            }
+    public readonly NedaoProperty<float> Armor = [];
 
-            SetMaxHelth(_maxHelth);
-        }
-    }
+    public readonly NedaoProperty<float> Speed = [];
 
-    public float Damage
-    {
-        get => _damage;
-        set
-        {
-            _damage = value;
+    public readonly NedaoProperty<float> AttackSpeed = [];
 
-            SetDamage(_damage);
-        }
-    }
+    public readonly NedaoProperty<float> AttackRange = [];
 
-    public float Armor
-    {
-        get => _armor;
-        set
-        {
-            _armor = value;
-
-            SetArmor(_armor);
-        }
-    }
-
-    public float Speed
-    {
-        get => _speed;
-        set
-        {
-            _speed = value;
-
-            if(_speed < 0)
-            {
-                _speed = 0;
-            }
-
-            SetSpeed(_speed);
-        }
-    }
-
-    public float AttackSpeed
-    {
-        get => _attackSpeed;
-        set
-        {
-            _attackSpeed = value;
-
-            if(_attackSpeed < 0)
-            {
-                _attackSpeed = 0;
-            }
-
-            SetAttackSpeed(_attackSpeed);
-        }
-    }
-
-    public float AttackRange
-    {
-        get => _attackRange;
-        set
-        {
-            _attackRange = value;
-
-            if (_attackRange < 0)
-            {
-                _attackRange = 0;
-            }
-
-            SetAttackRange(_attackRange);
-        }
-    }
-
-    public float BaseAttackTime
-    {
-        get => _baseAttackTime;
-        set
-        {
-            _baseAttackTime = value;
-
-            if (_baseAttackTime < 0)
-            {
-                _baseAttackTime = 0;
-            }
-
-        }
-    }
-
-    public float CurrentHelth
-    {
-        get => _currentHelth;
-        set
-        {
-            _currentHelth = value;
-
-            SetCurrentHelth(_currentHelth);
-        }
-    }
-
-    public float CurrentMaxHelth
-    {
-        get => _currentMaxHelth;
-        set
-        {
-            _currentMaxHelth = value;
-
-            SetCurrentMaxHelth(_currentMaxHelth);
-        }
-    }
-
-    public float CurrentDamage
-    {
-        get => _currentDamage;
-        set
-        {
-            _currentDamage = value;
-
-            SetCurrentDamage(_currentDamage);
-        }
-    }
-
-    public float CurrentArmor
-    {
-        get => _currentArmor;
-        set
-        {
-            _currentArmor = value;
-
-            SetCurrentArmor(_currentArmor);
-        }
-    }
-
-    public float CurrentSpeed
-    {
-        get => _currentSpeed;
-        set
-        {
-            _currentSpeed = value;
-
-            SetCurrentSpeed(_currentSpeed);
-        }
-    }
-
-    public float CurrentAttackSpeed
-    {
-        get => _currentAttackSpeed;
-        set
-        {
-            _currentAttackSpeed = value;
-
-            SetCurrentAttackSpeed(_currentAttackSpeed);
-        }
-    }
-
-    public float CurrentAttackRange
-    {
-        get => _currentAttackRange;
-        set
-        {
-            _currentAttackRange = value;
-            if (_currentAttackRange < 0)
-            {
-                _currentAttackRange = 0;
-            }
-
-            SetCurrentAttackRange(_currentAttackRange);
-        }
-    }
-
-    public float CurrentBaseAttackTime
-    {
-        get => _currentBaseAttackTime;
-        set
-        {
-            _currentBaseAttackTime = value;
-            
-            if (_currentBaseAttackTime < 0)
-            {
-                _currentBaseAttackTime = 0;
-            }
-
-            SetCurrentBaseAttackTime(_currentBaseAttackTime);
-        }
-    }
+    public readonly NedaoProperty<float> BaseAttackTime = [];
 
     public virtual void TakeExp(int exp)
     {
@@ -374,79 +167,6 @@ public abstract partial class NedaoObject
     }
 
     protected virtual void SetLevel(int level, int prevLevel)
-    {
-    }
-
-    protected virtual void SetHelth(float helth)
-    {
-        CurrentHelth = helth;
-    }
-
-    protected virtual void SetMaxHelth(float maxHelth)
-    {
-        CurrentMaxHelth = maxHelth;
-    }
-
-    protected virtual void SetDamage(float damage)
-    {
-        CurrentDamage = damage;
-    }
-
-    protected virtual void SetArmor(float armor)
-    {
-        CurrentArmor = armor;
-    }
-
-    protected virtual void SetSpeed(float speed)
-    {
-        CurrentSpeed = speed;
-    }
-
-    protected virtual void SetAttackSpeed(float attackSpeed)
-    {
-        CurrentAttackSpeed = attackSpeed;
-    }
-
-    protected virtual void SetAttackRange(float attackRange)
-    {
-        CurrentAttackRange = attackRange;
-    }
-
-    protected virtual void SetBaseAttackTime(float baseAttackTime)
-    {
-        CurrentBaseAttackTime = baseAttackTime;
-    }
-
-    protected virtual void SetCurrentHelth(float currentHelth)
-    {
-    }
-
-    protected virtual void SetCurrentMaxHelth(float currentMaxHelth)
-    {
-    }
-
-    protected virtual void SetCurrentDamage(float currentDamage)
-    {
-    }
-
-    protected virtual void SetCurrentArmor(float currentArmor)
-    {
-    }
-
-    protected virtual void SetCurrentSpeed(float currentSpeed)
-    {
-        
-    }
-
-    protected virtual void SetCurrentAttackSpeed(float currentAttackSpeed)
-    {
-    }
-
-    protected virtual void SetCurrentAttackRange(float currentAttackRange)
-    {
-    }
-
-    protected virtual void SetCurrentBaseAttackTime(float currentBaseAttackTime)
     {
     }
 
@@ -484,7 +204,7 @@ public abstract partial class NedaoObject
 
     protected virtual float CalculateAttackSpeed()
     {
-        return ((100+CurrentAttackSpeed) / 100);
+        return ((100+AttackSpeed) / (100*BaseAttackTime));
     }
 
     protected static void RescalePercentage(ref double current, double max, double newMax)

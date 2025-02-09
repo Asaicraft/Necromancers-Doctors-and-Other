@@ -189,4 +189,9 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
 
         return result;
     }
+
+    public static implicit operator T(NedaoProperty<T> property)
+    {
+        return property.TotalValue;
+    }
 }
