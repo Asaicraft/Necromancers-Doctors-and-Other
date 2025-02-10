@@ -15,7 +15,7 @@ public partial class Gravedigger: NedaoProxy
 
 		var input = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 
-		Velocity = input * Speed;
+		Velocity = input * Stats.Speed;
 		MoveAndSlide();
 	}
 

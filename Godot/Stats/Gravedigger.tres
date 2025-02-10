@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatsProxy" load_steps=2 format=3 uid="uid://dms681pyhiopg"]
+
+[ext_resource type="Script" path="res://Scripts/StatsProxy.cs" id="1_3qvx0"]
+
+[resource]
+script = ExtResource("1_3qvx0")
+Health = 100.0
+MaxHealth = 100.0
+Damage = 4.0
+Armor = 2.0
+Speed = 300.0
+AttackSpeed = 120.0
+AttackRange = 400.0
+BaseAttackTime = 1.7

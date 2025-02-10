@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://duseifehrtb41" path="res://Mobs/NedaoProxy.tscn" id="1_cunov"]
 [ext_resource type="Texture2D" uid="uid://dp17r1v4velgk" path="res://Sprites/Necromancers, Doctors, and Other Perverts_Гроб.png" id="1_xb118"]
 
-[node name="NedaoProxy" instance=ExtResource("1_cunov")]
+[node name="Tombstone" instance=ExtResource("1_cunov")]
 
 [node name="Necromancers,Doctors,AndOtherPervertsГроб" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("1_xb118")

@@ -11,54 +11,11 @@ public partial class NedaoProxy : CharacterBody2D
 	/// </summary>
 	private NedaoObject? _target;
 
-	[ExportGroup("Stats")]
 	[Export]
-	public float MaxHealth
+	public StatsProxy Stats
 	{
 		get; set;
-	}
-
-	[Export]
-	public float Health
-	{
-		get; set;
-	}
-
-	[Export]
-	public float Damage
-	{
-		get; set;
-	}
-
-	[Export]
-	public float Armor
-	{
-		get; set;
-	}
-
-	[Export]
-	public float Speed
-	{
-		get; set;
-	}
-
-	[Export]
-	public float AttackSpeed
-	{
-		get; set;
-	}
-
-	[Export]
-	public float AttackRange
-	{
-		get; set;
-	}
-
-	[Export]
-	public float BaseAttackTime
-	{
-		get; set;
-	}
+	} = new();
 
 	[ExportGroup("Level")]
 	[Export]
@@ -106,14 +63,7 @@ public partial class NedaoProxy : CharacterBody2D
 
 	public override void _Ready()
 	{
-		Target.Helth = Health;
-		Target.MaxHealth.BaseValue = MaxHealth;
-		Target.Damage.BaseValue = Damage;
-		Target.Armor.BaseValue = Armor;
-		Target.Speed.BaseValue = Speed;
-		Target.AttackSpeed.BaseValue = AttackSpeed;
-		Target.AttackRange.BaseValue = AttackRange;
-		Target.BaseAttackTime.BaseValue = BaseAttackTime;
+		Stats.ApplyTo(Target);
 
 		if (SetLevelBeforeGain)
 		{
@@ -123,16 +73,7 @@ public partial class NedaoProxy : CharacterBody2D
 			Target.TakeExp(Exp);
 		}
 
-		if (Target.GainModifier is SimpleGainModifier gainModifier)
-		{
-			gainModifier.MaxHealth.BaseValue = MaxHealth;
-			gainModifier.Damage.BaseValue = Damage;
-			gainModifier.Armor.BaseValue = Armor;
-			gainModifier.Speed.BaseValue = Speed;
-			gainModifier.AttackSpeed.BaseValue = AttackSpeed;
-			gainModifier.AttackRange.BaseValue = AttackRange;
-			gainModifier.BaseAttackTime.BaseValue = BaseAttackTime;
-		}
+		Gain.ApplyTo(Target);
 
 		if (!SetLevelBeforeGain)
 		{

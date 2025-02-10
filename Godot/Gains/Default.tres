@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_fhera")
-MaxHealth = 100.0
+MaxHealth = 45.0
 Damage = 4.0
 Armor = 0.12
 Speed = 0.0
