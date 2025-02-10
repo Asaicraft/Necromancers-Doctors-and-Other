@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://chvkr42h1pbql"]
+
+[ext_resource type="Texture2D" uid="uid://bml3ncmpfjmr6" path="res://Sprites/Necromancers, Doctors, and Other Perverts_Гробовщик.png" id="1_3xcpx"]
+[ext_resource type="Script" path="res://Scripts/AttackProxy.cs" id="2_ys0uq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m5prb"]
+radius = 91.0
+height = 218.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mmpmw"]
+
+[node name="Gravedigger" type="CharacterBody2D"]
+
+[node name="Necromancers,Doctors,AndOtherPervertsГробовщик" type="Sprite2D" parent="."]
+texture = ExtResource("1_3xcpx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(21, 124)
+shape = SubResource("CapsuleShape2D_m5prb")
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("Nedao", "CollisionShape")]
+script = ExtResource("2_ys0uq")
+Nedao = NodePath("..")
+CollisionShape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_mmpmw")

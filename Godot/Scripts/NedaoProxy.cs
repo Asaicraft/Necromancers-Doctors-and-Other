@@ -78,10 +78,6 @@ public partial class NedaoProxy : Node
     /// Be aware that the level may increase as a result.
     /// </summary>
     [Export]
-    /// <summary>
-    /// If true, the level is set before gaining experience.
-    /// Be aware that the level may increase as a result.
-    /// </summary>
     public bool SetLevelBeforeGain
 	{
 		get; set;
