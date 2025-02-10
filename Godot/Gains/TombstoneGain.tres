@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GainProxy" load_steps=2 format=3 uid="uid://bjfo5ljn81cn7"]
+
+[ext_resource type="Script" path="res://Scripts/GainProxy.cs" id="1_atf86"]
+
+[resource]
+script = ExtResource("1_atf86")
+MaxHealth = 50.0
+Damage = 0.0
+Armor = 1.0
+Speed = 0.0
+AttackSpeed = 0.0
+AttackRange = 0.0
+BaseAttackTime = 0.0

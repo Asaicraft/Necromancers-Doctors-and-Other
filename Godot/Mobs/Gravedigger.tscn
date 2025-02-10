@@ -47,3 +47,4 @@ CollisionShape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_mmpmw")
+debug_color = Color(0.980392, 0, 0.368627, 0.419608)

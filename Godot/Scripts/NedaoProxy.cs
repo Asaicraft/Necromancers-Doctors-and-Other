@@ -65,7 +65,7 @@ public partial class NedaoProxy : CharacterBody2D
 	public int Level
 	{
 		get; set;
-	}
+	} = 1;
 
 	[Export]
 	public int Exp
@@ -81,7 +81,7 @@ public partial class NedaoProxy : CharacterBody2D
 	public bool SetLevelBeforeGain
 	{
 		get; set;
-	}
+	} = true;
 
 	[Export]
 	public GainProxy Gain

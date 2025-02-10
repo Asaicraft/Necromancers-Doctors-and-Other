@@ -55,38 +55,35 @@ public partial class AttackProxy : Area2D
 
     private void OnBodyEntered(Node2D body)
     {
-        if (body is CharacterBody2D)
+        if (body is NedaoProxy nedao)
         {
-            var script = body.GetScript();
-            var proxy = script.Obj as NedaoProxy;
-
-            if (proxy is { } nedao)
+            if(nedao == Nedao)
             {
-                _nedaoProxies.Add(proxy);
-
-                nedao.TreeExited += () => _nedaoProxies.Remove(nedao);
-
-                GD.Print("Attack");
+                // Ignore self
+                return;
             }
+
+            _nedaoProxies.Add(nedao);
+
+            nedao.TreeExited += () => _nedaoProxies.Remove(nedao);
+
+            GD.Print("Attack");
         }
     }
 
     private void OnBodyExited(Node2D body)
     {
-        if (body is CharacterBody2D)
+        if (body is NedaoProxy nedao)
         {
-            var script = body.GetScript();
-
-            GD.Print(script);
-
-            var proxy = script.Obj;
-
-            if (proxy is NedaoProxy nedao)
+            if (nedao == Nedao)
             {
-                _nedaoProxies.Remove(nedao);
-
-                GD.Print("Stop Attack");
+                // Ignore self
+                return;
             }
+
+            _nedaoProxies.Remove(nedao);
+
+            GD.Print("Stop Attack");
         }
     }
 
