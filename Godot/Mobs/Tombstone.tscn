@@ -1,24 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8p1t8hihki3t"]
+[gd_scene load_steps=3 format=3 uid="uid://b8p1t8hihki3t"]
 
-[ext_resource type="Script" path="res://Scripts/NedaoProxy.cs" id="1_loy5x"]
+[ext_resource type="PackedScene" uid="uid://duseifehrtb41" path="res://Mobs/NedaoProxy.tscn" id="1_cunov"]
 [ext_resource type="Texture2D" uid="uid://dp17r1v4velgk" path="res://Sprites/Necromancers, Doctors, and Other Perverts_Гроб.png" id="1_xb118"]
-[ext_resource type="Resource" uid="uid://bjfo5ljn81cn7" path="res://Gains/TombstoneGain.tres" id="2_wj4we"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_am7g0"]
-radius = 91.0
-height = 218.0
+[node name="NedaoProxy" instance=ExtResource("1_cunov")]
 
-[node name="Tombstone" type="CharacterBody2D"]
-script = ExtResource("1_loy5x")
-MaxHealth = 200.0
-Health = 200.0
-Armor = 10.0
-BaseAttackTime = 100.0
-Gain = ExtResource("2_wj4we")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 8)
-shape = SubResource("CapsuleShape2D_am7g0")
-
-[node name="Necromancers,Doctors,AndOtherPervertsГроб" type="Sprite2D" parent="."]
+[node name="Necromancers,Doctors,AndOtherPervertsГроб" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("1_xb118")

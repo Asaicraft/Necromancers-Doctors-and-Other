@@ -46,6 +46,12 @@ move_right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Obstacle"
+2d_physics/layer_4="Take Damage Collision"
+2d_physics/layer_5="Attack Collision"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

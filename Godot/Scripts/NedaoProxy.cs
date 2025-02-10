@@ -89,6 +89,15 @@ public partial class NedaoProxy : CharacterBody2D
 		get; set;
 	} = new();
 
+
+	[ExportGroup("Anothers")]
+	[Export]
+	public bool CanAttack
+	{
+		get; set;
+	}
+
+
 	public NedaoObject Target
 	{
 		get => _target ??= CreateTarget();
