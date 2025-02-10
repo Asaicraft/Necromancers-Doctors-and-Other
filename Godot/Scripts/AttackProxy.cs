@@ -58,7 +58,7 @@ public partial class AttackProxy : Area2D
         if (body is CharacterBody2D)
         {
             var script = body.GetScript();
-            var proxy = script.As<NedaoProxy>();
+            var proxy = script.Obj as NedaoProxy;
 
             if (proxy is { } nedao)
             {
@@ -76,9 +76,12 @@ public partial class AttackProxy : Area2D
         if (body is CharacterBody2D)
         {
             var script = body.GetScript();
-            var proxy = script.As<NedaoProxy>();
 
-            if (proxy is { } nedao)
+            GD.Print(script);
+
+            var proxy = script.Obj;
+
+            if (proxy is NedaoProxy nedao)
             {
                 _nedaoProxies.Remove(nedao);
 

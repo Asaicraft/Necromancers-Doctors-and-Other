@@ -1,10 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfbkcbtuc3lvq"]
+[gd_scene load_steps=2 format=3 uid="uid://bfbkcbtuc3lvq"]
 
-[ext_resource type="Script" path="res://Scripts/NedaoProxy.cs" id="1_05yk3"]
-[ext_resource type="Resource" uid="uid://b0vwqu6c0ptp3" path="res://Scripts/Gains/testGain.tres" id="2_t2wtf"]
+[ext_resource type="PackedScene" uid="uid://chvkr42h1pbql" path="res://Mobs/Gravedigger.tscn" id="1_757bp"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_05yk3")
-Level = 10
-Exp = 10
-Gain = ExtResource("2_t2wtf")
+
+[node name="Gravedigger" parent="." instance=ExtResource("1_757bp")]
+motion_mode = 1
+Speed = 305.0

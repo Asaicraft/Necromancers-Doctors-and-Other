@@ -4,27 +4,27 @@ using NedaoObjects;
 using NedaoObjects.Gains;
 using System;
 
-public partial class NedaoProxy : Node
+public partial class NedaoProxy : CharacterBody2D
 {
-    /// <summary>
-    /// Prefers to use the target property instead of this field.
-    /// </summary>
-    private NedaoObject? _target;
+	/// <summary>
+	/// Prefers to use the target property instead of this field.
+	/// </summary>
+	private NedaoObject? _target;
 
-    [ExportGroup("Stats")]
+	[ExportGroup("Stats")]
 	[Export]
 	public float MaxHealth
 	{
 		get; set;
 	}
 
-    [Export]
-    public float Health
-    {
+	[Export]
+	public float Health
+	{
 		get; set;
-    }
+	}
 
-    [Export]
+	[Export]
 	public float Damage
 	{
 		get; set;
@@ -62,7 +62,7 @@ public partial class NedaoProxy : Node
 
 	[ExportGroup("Level")]
 	[Export]
-    public int Level
+	public int Level
 	{
 		get; set;
 	}
@@ -73,12 +73,12 @@ public partial class NedaoProxy : Node
 		get; set;
 	}
 
-    /// <summary>
-    /// If true, the level is set before gaining experience.
-    /// Be aware that the level may increase as a result.
-    /// </summary>
-    [Export]
-    public bool SetLevelBeforeGain
+	/// <summary>
+	/// If true, the level is set before gaining experience.
+	/// Be aware that the level may increase as a result.
+	/// </summary>
+	[Export]
+	public bool SetLevelBeforeGain
 	{
 		get; set;
 	}
@@ -92,62 +92,62 @@ public partial class NedaoProxy : Node
 	public NedaoObject Target
 	{
 		get => _target ??= CreateTarget();
-    }
+	}
 
 
-    public override void _Ready()
-    {
-        Target.Helth = Health;
-        Target.MaxHealth.BaseValue = MaxHealth;
-        Target.Damage.BaseValue = Damage;
-        Target.Armor.BaseValue = Armor;
-        Target.Speed.BaseValue = Speed;
-        Target.AttackSpeed.BaseValue = AttackSpeed;
-        Target.AttackRange.BaseValue = AttackRange;
-        Target.BaseAttackTime.BaseValue = BaseAttackTime;
+	public override void _Ready()
+	{
+		Target.Helth = Health;
+		Target.MaxHealth.BaseValue = MaxHealth;
+		Target.Damage.BaseValue = Damage;
+		Target.Armor.BaseValue = Armor;
+		Target.Speed.BaseValue = Speed;
+		Target.AttackSpeed.BaseValue = AttackSpeed;
+		Target.AttackRange.BaseValue = AttackRange;
+		Target.BaseAttackTime.BaseValue = BaseAttackTime;
 
-        if (SetLevelBeforeGain)
-        {
-            Target.Level = Level;
+		if (SetLevelBeforeGain)
+		{
+			Target.Level = Level;
 
-            // Warning: The level may increase, which may not be intended.
-            Target.TakeExp(Exp);
-        }
+			// Warning: The level may increase, which may not be intended.
+			Target.TakeExp(Exp);
+		}
 
-        if (Target.GainModifier is SimpleGainModifier gainModifier)
-        {
-            gainModifier.MaxHealth.BaseValue = MaxHealth;
-            gainModifier.Damage.BaseValue = Damage;
-            gainModifier.Armor.BaseValue = Armor;
-            gainModifier.Speed.BaseValue = Speed;
-            gainModifier.AttackSpeed.BaseValue = AttackSpeed;
-            gainModifier.AttackRange.BaseValue = AttackRange;
-            gainModifier.BaseAttackTime.BaseValue = BaseAttackTime;
-        }
+		if (Target.GainModifier is SimpleGainModifier gainModifier)
+		{
+			gainModifier.MaxHealth.BaseValue = MaxHealth;
+			gainModifier.Damage.BaseValue = Damage;
+			gainModifier.Armor.BaseValue = Armor;
+			gainModifier.Speed.BaseValue = Speed;
+			gainModifier.AttackSpeed.BaseValue = AttackSpeed;
+			gainModifier.AttackRange.BaseValue = AttackRange;
+			gainModifier.BaseAttackTime.BaseValue = BaseAttackTime;
+		}
 
-        if (!SetLevelBeforeGain)
-        {
-            Target.Level = Level;
+		if (!SetLevelBeforeGain)
+		{
+			Target.Level = Level;
 
-            // Warning: The level may increase, which may not be intended.
-            Target.TakeExp(Exp);
-        }
-    }
+			// Warning: The level may increase, which may not be intended.
+			Target.TakeExp(Exp);
+		}
+	}
 
-    /// <summary>
-    /// Creates and initializes a new <see cref="NedaoObject"/> instance.
-    /// This method is called lazily when accessing the <see cref="Target"/> property for the first time.
-    /// Designed to be overridden in derived classes to customize object creation.
-    /// </summary>
-    /// <returns>A new instance of <see cref="NedaoObject"/>.</returns>
-    protected virtual NedaoObject CreateTarget()
+	/// <summary>
+	/// Creates and initializes a new <see cref="NedaoObject"/> instance.
+	/// This method is called lazily when accessing the <see cref="Target"/> property for the first time.
+	/// Designed to be overridden in derived classes to customize object creation.
+	/// </summary>
+	/// <returns>A new instance of <see cref="NedaoObject"/>.</returns>
+	protected virtual NedaoObject CreateTarget()
 	{
 		return new();
 	}
 
 	private static int ValidateLevel(int value)
 	{
-        if (value < 1)
+		if (value < 1)
 		{
 			return 1;
 		}
