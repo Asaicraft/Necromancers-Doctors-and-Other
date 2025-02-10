@@ -4,4 +4,10 @@
 
 [resource]
 script = ExtResource("1_fn3vo")
-MaxHealth = 0
+MaxHealth = 0.0
+Damage = 0.0
+Armor = 0.0
+Speed = 0.0
+AttackSpeed = 0.0
+AttackRange = 0.0
+BaseAttackTime = 0.0
