@@ -92,7 +92,7 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
         return TotalBonus;
     }
 
-    #region ICollection<Bonus<T>> implementation
+    #region ICollection<PropertyModifier<T>> implementation
 
     /// <inheritdoc />
     public int Count => Bonuses.Count;
