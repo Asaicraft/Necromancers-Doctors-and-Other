@@ -17,6 +17,8 @@ collision_layer = 9
 script = ExtResource("2_8fbry")
 Stats = ExtResource("3_4vpb0")
 Gain = ExtResource("3_jqju2")
+Team = 1
+Enemies = 2
 CanAttack = true
 
 [node name="Necromancers,Doctors,AndOtherPervertsГробовщик" type="Sprite2D" parent="."]

@@ -1,5 +1,7 @@
 ﻿using Godot;
+using NedaoObjects;
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -51,10 +53,43 @@ public partial class AttackProxy : Area2D
 
         BodyEntered += OnBodyEntered;
         BodyExited += OnBodyExited;
+    }
 
-        GD.Print("AttackProxy is ready!");
-        GD.Print($"Nedao type is {Nedao?.GetType()}");
-        GD.Print($"Nedao is {Nedao?.Name ?? "null"}");
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        if (Nedao is { } nedao)
+        {
+            CircleShape.Radius = nedao.Target.AttackRange;
+
+            if(nedao.CanAttack)
+            {
+                TryAttack(nedao);
+            }
+        }
+    }
+
+    protected virtual void TryAttack(NedaoProxy subject)
+    {
+        var temp = ArrayPool<NedaoProxy>.Shared.Rent(_nedaoProxies.Count);
+        _nedaoProxies.CopyTo(temp);
+
+        try
+        {
+            for (var i = 0; i < temp.Length; i++)
+            {
+                var enemy = temp[i];
+
+                subject.TryAttack(enemy);
+
+            }
+        }
+        finally
+        {
+            ArrayPool<NedaoProxy>.Shared.Return(temp);
+        }
+        
     }
 
     private void OnBodyEntered(Node2D body)
@@ -67,11 +102,14 @@ public partial class AttackProxy : Area2D
                 return;
             }
 
-            _nedaoProxies.Add(nedao);
+            if(IsEnemy(nedao))
+            {
+                _nedaoProxies.Add(nedao);
 
-            nedao.TreeExited += () => _nedaoProxies.Remove(nedao);
+                nedao.TreeExited += () => _nedaoProxies.Remove(nedao);
 
-            GD.Print("Attack");
+                GD.Print("Attack");
+            }
         }
     }
 
@@ -86,19 +124,17 @@ public partial class AttackProxy : Area2D
             }
 
             _nedaoProxies.Remove(nedao);
-
-            GD.Print("Stop Attack");
         }
     }
 
-    public override void _Process(double delta)
+    protected virtual bool IsEnemy(NedaoProxy subject)
     {
-        base._Process(delta);
+        return Nedao is not null && IsEnemy(Nedao, subject);
+    }
 
-        if (Nedao is { } nedao)
-        {
-            CircleShape.Radius = nedao.Target.AttackRange;
-        }
+    public static bool IsEnemy(NedaoProxy attacker, NedaoProxy defender)
+    {
+        return (attacker.Enemies & defender.Team) != 0;
     }
 
 }

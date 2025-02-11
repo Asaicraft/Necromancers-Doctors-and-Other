@@ -170,6 +170,37 @@ public partial class NedaoObject
         Helth -= CalculateDamage(damage);
     }
 
+    public virtual void Update(double delta)
+    {
+        if (IsDie)
+        {
+            return;
+        }
+
+        if (Helth <= 0)
+        {
+            Die();
+            return;
+        }
+
+        Effects.Update(delta);
+        AttackBehavior.Update(delta);
+    }
+
+    public virtual bool TryAttackNedao(NedaoObject nedaoObject)
+    {
+        if(AttackBehavior.Cooldown > 0)
+        {
+            return false;
+        }
+
+        AttackBehavior.Attack(nedaoObject);
+
+        AttackBehavior.Cooldown = CalculateAttackSpeed();
+
+        return true;
+    }
+
     protected virtual void SetDie(bool isDie)
     {
     }

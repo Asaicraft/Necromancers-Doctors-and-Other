@@ -46,6 +46,19 @@ public partial class NedaoProxy : CharacterBody2D
 		get; set;
 	} = new();
 
+	[ExportGroup("Teams And Enemies")]
+	[Export]
+	public Mobs Team
+	{
+		get; set;
+	}
+
+	[Export]
+	public Mobs Enemies
+	{
+		get; set;
+	}
+
 
 	[ExportGroup("Anothers")]
 	[Export]
@@ -82,6 +95,18 @@ public partial class NedaoProxy : CharacterBody2D
 			// Warning: The level may increase, which may not be intended.
 			Target.TakeExp(Exp);
 		}
+	}
+
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+
+		Target.Update(delta);
+	}
+
+	public virtual bool TryAttack(NedaoProxy nedaoProxy)
+	{
+		return Target.TryAttackNedao(nedaoProxy.Target);
 	}
 
 	/// <summary>

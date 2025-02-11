@@ -49,8 +49,6 @@ public class AttackBehavior(NedaoObject associatedObject)
             return;
         }
 
-
-
         var damage = CreateDamage(target);
         target.TakeDamage(damage);
     }
