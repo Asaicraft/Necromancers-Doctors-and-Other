@@ -7,3 +7,6 @@
 
 [node name="Necromancers,Doctors,AndOtherPervertsГроб" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("1_xb118")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+debug_color = Color(0.980392, 0, 0.368627, 0.419608)

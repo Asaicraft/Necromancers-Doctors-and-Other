@@ -1,17 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://chvkr42h1pbql"]
+[gd_scene load_steps=8 format=3 uid="uid://byi3ka7snbbm5"]
 
-[ext_resource type="PackedScene" uid="uid://duseifehrtb41" path="res://Mobs/NedaoProxy.tscn" id="1_2njyy"]
 [ext_resource type="Texture2D" uid="uid://bml3ncmpfjmr6" path="res://Sprites/Necromancers, Doctors, and Other Perverts_Гробовщик.png" id="1_3xcpx"]
 [ext_resource type="Script" path="res://Scripts/Gravedigger.cs" id="2_8fbry"]
 [ext_resource type="Resource" uid="uid://dms681pyhiopg" path="res://Stats/Gravedigger.tres" id="3_4vpb0"]
+[ext_resource type="Resource" uid="uid://bff0e1k54louk" path="res://Gains/Default.tres" id="3_jqju2"]
+[ext_resource type="Script" path="res://Scripts/AttackProxy.cs" id="5_ja0gc"]
 
-[node name="Gravedigger" instance=ExtResource("1_2njyy")]
-scale = Vector2(1, 0.980723)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_80uh8"]
+radius = 91.0
+height = 218.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1wd1"]
+
+[node name="Gravedigger" type="CharacterBody2D"]
+collision_layer = 9
 script = ExtResource("2_8fbry")
 Stats = ExtResource("3_4vpb0")
+Gain = ExtResource("3_jqju2")
+CanAttack = true
 
-[node name="Necromancers,Doctors,AndOtherPervertsГробовщик" type="Sprite2D" parent="." index="0"]
+[node name="Necromancers,Doctors,AndOtherPervertsГробовщик" type="Sprite2D" parent="."]
 texture = ExtResource("1_3xcpx")
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(21, 119)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(21, 137)
+shape = SubResource("CapsuleShape2D_80uh8")
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("Nedao", "CollisionShape")]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("5_ja0gc")
+Nedao = NodePath("..")
+CollisionShape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_t1wd1")
+debug_color = Color(0.980392, 0, 0.368627, 0.419608)

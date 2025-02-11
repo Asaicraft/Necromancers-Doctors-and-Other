@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfbkcbtuc3lvq"]
 
-[ext_resource type="PackedScene" uid="uid://chvkr42h1pbql" path="res://Mobs/Gravedigger.tscn" id="1_t73wu"]
+[ext_resource type="PackedScene" uid="uid://byi3ka7snbbm5" path="res://Mobs/Gravedigger.tscn" id="2_12hrh"]
 [ext_resource type="PackedScene" uid="uid://b8p1t8hihki3t" path="res://Mobs/Tombstone.tscn" id="2_two40"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Gravedigger" parent="." instance=ExtResource("1_t73wu")]
-position = Vector2(125, 147)
-
 [node name="Tombstone" parent="." instance=ExtResource("2_two40")]
 position = Vector2(938, 120)
+
+[node name="Gravedigger" parent="." instance=ExtResource("2_12hrh")]
+position = Vector2(142, 256)

@@ -9,6 +9,14 @@ using System.Threading.Tasks;
 public partial class Gravedigger: NedaoProxy
 {
 
+	public override void _Ready()
+	{
+		base._Ready();
+
+		GD.Print("Gravedigger is ready!");
+		GD.Print($"Gravedigger AttackRange:{Target.AttackRange.TotalValue}");
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);

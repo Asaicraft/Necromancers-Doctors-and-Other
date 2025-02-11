@@ -51,6 +51,10 @@ public partial class AttackProxy : Area2D
 
         BodyEntered += OnBodyEntered;
         BodyExited += OnBodyExited;
+
+        GD.Print("AttackProxy is ready!");
+        GD.Print($"Nedao type is {Nedao?.GetType()}");
+        GD.Print($"Nedao is {Nedao?.Name ?? "null"}");
     }
 
     private void OnBodyEntered(Node2D body)
