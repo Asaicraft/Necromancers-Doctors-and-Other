@@ -57,7 +57,7 @@ public partial class NedaoObject
     private int _exp = 0;
     private int _level = 1;
 
-    private float _helth = 100;
+    private float _health = 100;
 
     public NedaoObject()
     {
@@ -130,12 +130,12 @@ public partial class NedaoObject
         }
     }
 
-    public float Helth
+    public float Health
     {
-        get => _helth;
+        get => _health;
         set
         {
-            _helth = value;
+            _health = value;
         }
     }
 
@@ -167,7 +167,7 @@ public partial class NedaoObject
 
     public virtual void TakeDamage(Damage damage)
     {
-        Helth -= CalculateDamage(damage);
+        Health -= CalculateDamage(damage);
     }
 
     public virtual void Update(double delta)
@@ -177,7 +177,7 @@ public partial class NedaoObject
             return;
         }
 
-        if (Helth <= 0)
+        if (Health <= 0)
         {
             Die();
             return;

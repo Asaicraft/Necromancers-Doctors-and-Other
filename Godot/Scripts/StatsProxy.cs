@@ -24,7 +24,7 @@ public sealed partial class StatsProxy: BaseAttributes
     public void ApplyTo(NedaoObject nedaoObject)
     {
         nedaoObject.MaxHealth.BaseValue = MaxHealth;
-        nedaoObject.Helth = Health;
+        nedaoObject.Health = Health;
         nedaoObject.Damage.BaseValue = Damage;
         nedaoObject.Armor.BaseValue = Armor;
         nedaoObject.Speed.BaseValue = Speed;

@@ -14,19 +14,19 @@ public class AttackTest
     {
         var attacker = new NedaoObject();
         attacker.MaxHealth.BaseValue = 100;
-        attacker.Helth = 100;
+        attacker.Health = 100;
         attacker.Damage.BaseValue = 10;
 
         attacker.AttackBehavior.Cooldown = -0;
 
         var target = new NedaoObject();
         target.MaxHealth.BaseValue = 100;
-        target.Helth = 100;
+        target.Health = 100;
 
         var isAttackSuccessful = attacker.TryAttackNedao(target);
 
         Assert.True(isAttackSuccessful);
-        Assert.Equal(90, target.Helth);
+        Assert.Equal(90, target.Health);
 
         isAttackSuccessful = attacker.TryAttackNedao(target);
 

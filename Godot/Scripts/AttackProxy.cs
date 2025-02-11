@@ -77,11 +77,18 @@ public partial class AttackProxy : Area2D
 
         try
         {
-            for (var i = 0; i < temp.Length; i++)
+            for (var i = 0; i < _nedaoProxies.Count; i++)
             {
                 var enemy = temp[i];
 
+#if RELEASE
                 subject.TryAttack(enemy);
+#elif DEBUG
+                if (subject.TryAttack(enemy))
+                {
+                    GD.Print($"{subject.Name} attack {enemy.Name}; Enemy health: {enemy.Target.Health}")
+                }
+#endif
 
             }
         }
