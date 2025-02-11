@@ -5,9 +5,9 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Tombstone" parent="." instance=ExtResource("2_two40")]
-position = Vector2(938, 120)
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_12hrh")]
-Enemies = 3072
+[node name="Gravedigger" parent="." instance=ExtResource("2_12hrh")]
+position = Vector2(71, 144)
 CanAttack = true
+
+[node name="Tombstone" parent="." instance=ExtResource("2_two40")]
+position = Vector2(994, 507)
