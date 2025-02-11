@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://g1kmtnfrbiiu" path="res://AttackProxy.tscn" id="2_ooi5k"]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 9
 motion_mode = 1
 
 [node name="MobCollision" parent="." instance=ExtResource("1_010jk")]
 
 [node name="AttackProxy" parent="." instance=ExtResource("2_ooi5k")]
+scale = Vector2(0.990648, 1)

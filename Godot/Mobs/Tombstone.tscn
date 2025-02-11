@@ -12,9 +12,13 @@ collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_4sr0y")
 Stats = ExtResource("2_s5y0p")
+Level = null
+Exp = null
+SetLevelBeforeGain = null
 Gain = ExtResource("3_q7stw")
 Team = 3073
 Enemies = 2
+CanAttack = null
 
 [node name="Necromancers,Doctors,AndOtherPervertsГроб" type="Sprite2D" parent="."]
 texture = ExtResource("1_xb118")
