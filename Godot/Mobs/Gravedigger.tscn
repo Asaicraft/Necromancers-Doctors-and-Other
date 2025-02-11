@@ -1,16 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://byi3ka7snbbm5"]
+[gd_scene load_steps=7 format=3 uid="uid://byi3ka7snbbm5"]
 
 [ext_resource type="Texture2D" uid="uid://bml3ncmpfjmr6" path="res://Sprites/Necromancers, Doctors, and Other Perverts_Гробовщик.png" id="1_3xcpx"]
 [ext_resource type="Script" path="res://Scripts/Gravedigger.cs" id="2_8fbry"]
 [ext_resource type="Resource" uid="uid://dms681pyhiopg" path="res://Stats/Gravedigger.tres" id="3_4vpb0"]
 [ext_resource type="Resource" uid="uid://bff0e1k54louk" path="res://Gains/Default.tres" id="3_jqju2"]
-[ext_resource type="Script" path="res://Scripts/AttackProxy.cs" id="5_ja0gc"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_80uh8"]
-radius = 91.0
-height = 218.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_t1wd1"]
+[ext_resource type="PackedScene" uid="uid://g1kmtnfrbiiu" path="res://AttackProxy.tscn" id="5_ckcxr"]
+[ext_resource type="PackedScene" uid="uid://d0bl73j0qn2i7" path="res://MobCollision.tscn" id="5_dlcdk"]
 
 [node name="Gravedigger" type="CharacterBody2D"]
 collision_layer = 9
@@ -24,17 +19,8 @@ CanAttack = true
 [node name="Necromancers,Doctors,AndOtherPervertsГробовщик" type="Sprite2D" parent="."]
 texture = ExtResource("1_3xcpx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="MobCollision" parent="." instance=ExtResource("5_dlcdk")]
 position = Vector2(21, 137)
-shape = SubResource("CapsuleShape2D_80uh8")
 
-[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("Nedao", "CollisionShape")]
-collision_layer = 16
-collision_mask = 8
-script = ExtResource("5_ja0gc")
+[node name="AttackProxy" parent="." node_paths=PackedStringArray("Nedao") instance=ExtResource("5_ckcxr")]
 Nedao = NodePath("..")
-CollisionShape = NodePath("CollisionShape2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_t1wd1")
-debug_color = Color(0.980392, 0, 0.368627, 0.419608)

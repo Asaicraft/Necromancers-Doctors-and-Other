@@ -1,34 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://duseifehrtb41"]
+[gd_scene load_steps=3 format=3 uid="uid://duseifehrtb41"]
 
-[ext_resource type="Script" path="res://Scripts/NedaoProxy.cs" id="1_cq4o4"]
-[ext_resource type="Script" path="res://Scripts/AttackProxy.cs" id="2_2p5m3"]
-[ext_resource type="Resource" uid="uid://vnx8a7wji45g" path="res://Stats/Default.tres" id="2_ebi7x"]
-[ext_resource type="Resource" uid="uid://bff0e1k54louk" path="res://Gains/Default.tres" id="2_l3dka"]
+[ext_resource type="PackedScene" uid="uid://d0bl73j0qn2i7" path="res://MobCollision.tscn" id="1_010jk"]
+[ext_resource type="PackedScene" uid="uid://g1kmtnfrbiiu" path="res://AttackProxy.tscn" id="2_ooi5k"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vam2h"]
-radius = 91.0
-height = 218.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_iycfq"]
-
-[node name="NedaoProxy" type="CharacterBody2D"]
-collision_layer = 9
+[node name="CharacterBody2D" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_cq4o4")
-Stats = ExtResource("2_ebi7x")
-Gain = ExtResource("2_l3dka")
-CanAttack = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_vam2h")
+[node name="MobCollision" parent="." instance=ExtResource("1_010jk")]
 
-[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("Nedao", "CollisionShape")]
-collision_layer = 16
-collision_mask = 8
-script = ExtResource("2_2p5m3")
-Nedao = NodePath("..")
-CollisionShape = NodePath("CollisionShape2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_iycfq")
-debug_color = Color(0.980392, 0, 0.368627, 0.419608)
+[node name="AttackProxy" parent="." instance=ExtResource("2_ooi5k")]

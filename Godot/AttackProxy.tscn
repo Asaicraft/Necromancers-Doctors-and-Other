@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://g1kmtnfrbiiu"]
+
+[ext_resource type="Script" path="res://Scripts/AttackProxy.cs" id="1_fg80o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_re7bt"]
+
+[node name="AttackProxy" type="Area2D" node_paths=PackedStringArray("CollisionShape")]
+script = ExtResource("1_fg80o")
+CollisionShape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_re7bt")
+debug_color = Color(0.988235, 0, 0.317647, 0.419608)

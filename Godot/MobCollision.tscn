@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0bl73j0qn2i7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wgme0"]
+radius = 91.0
+height = 218.0
+
+[node name="MobCollision" type="CollisionShape2D"]
+shape = SubResource("CapsuleShape2D_wgme0")
