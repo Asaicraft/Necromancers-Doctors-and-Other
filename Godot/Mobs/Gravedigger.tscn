@@ -9,12 +9,9 @@
 [node name="Gravedigger" instance=ExtResource("1_3th30")]
 script = ExtResource("2_8fbry")
 Stats = ExtResource("3_4vpb0")
-Level = null
-Exp = null
 Gain = ExtResource("3_jqju2")
 Team = 1
 Enemies = 1024
-CanAttack = null
 
 [node name="Necromancers,Doctors,AndOtherPervertsГробовщик" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("1_3xcpx")

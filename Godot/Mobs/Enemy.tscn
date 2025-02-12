@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl3g7yklv23o1"]
+
+[ext_resource type="PackedScene" uid="uid://duseifehrtb41" path="res://Mobs/NedaoProxy.tscn" id="1_ysl4a"]
+
+[node name="CharacterBody2D" instance=ExtResource("1_ysl4a")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="2"]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="." index="3"]
+autostart = true

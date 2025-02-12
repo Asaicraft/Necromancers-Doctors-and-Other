@@ -7,6 +7,8 @@
 
 [node name="Gravedigger" parent="." instance=ExtResource("2_12hrh")]
 position = Vector2(71, 144)
+Level = 1
+Exp = 0
 CanAttack = true
 
 [node name="Tombstone" parent="." instance=ExtResource("2_two40")]
