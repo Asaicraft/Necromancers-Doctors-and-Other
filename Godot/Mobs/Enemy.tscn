@@ -16,5 +16,9 @@ debug_enabled = true
 [node name="MobCollision" parent="." index="1"]
 shape = SubResource("CircleShape2D_kvp6x")
 
-[node name="Timer" type="Timer" parent="." index="3"]
+[node name="PathFindTimer" type="Timer" parent="." index="3"]
+wait_time = 0.7
 autostart = true
+
+[node name="AggroTimeout" type="Timer" parent="." index="4"]
+wait_time = 60.0

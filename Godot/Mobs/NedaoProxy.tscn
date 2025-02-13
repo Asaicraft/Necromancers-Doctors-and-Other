@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://duseifehrtb41"]
+[gd_scene load_steps=4 format=3 uid="uid://duseifehrtb41"]
 
 [ext_resource type="PackedScene" uid="uid://d0bl73j0qn2i7" path="res://MobCollision.tscn" id="1_010jk"]
 [ext_resource type="PackedScene" uid="uid://g1kmtnfrbiiu" path="res://AttackProxy.tscn" id="2_ooi5k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdk4e"]
+radius = 80.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 9
 motion_mode = 1
 
 [node name="MobCollision" parent="." instance=ExtResource("1_010jk")]
+shape = SubResource("CircleShape2D_qdk4e")
 
 [node name="AttackProxy" parent="." instance=ExtResource("2_ooi5k")]
 scale = Vector2(0.990648, 1)

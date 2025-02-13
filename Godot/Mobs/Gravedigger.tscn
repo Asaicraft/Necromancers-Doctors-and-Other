@@ -15,10 +15,11 @@ Enemies = 1024
 
 [node name="Necromancers,Doctors,AndOtherPervertsГробовщик" type="Sprite2D" parent="." index="0"]
 y_sort_enabled = true
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_3xcpx")
 
 [node name="MobCollision" parent="." index="1"]
-position = Vector2(21, 137)
+position = Vector2(16, 109)
 scale = Vector2(1, 1.0116)
 
 [node name="AttackProxy" parent="." index="2" node_paths=PackedStringArray("Nedao")]
