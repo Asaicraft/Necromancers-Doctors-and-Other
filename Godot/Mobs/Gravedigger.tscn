@@ -6,8 +6,9 @@
 [ext_resource type="Resource" uid="uid://dms681pyhiopg" path="res://Stats/Gravedigger.tres" id="3_4vpb0"]
 [ext_resource type="Resource" uid="uid://bff0e1k54louk" path="res://Gains/Default.tres" id="3_jqju2"]
 
-[node name="Gravedigger" instance=ExtResource("1_3th30")]
+[node name="Gravedigger" node_paths=PackedStringArray("Sprite") instance=ExtResource("1_3th30")]
 script = ExtResource("2_8fbry")
+Sprite = NodePath("Necromancers,Doctors,AndOtherPervertsГробовщик")
 Stats = ExtResource("3_4vpb0")
 Gain = ExtResource("3_jqju2")
 Team = 1

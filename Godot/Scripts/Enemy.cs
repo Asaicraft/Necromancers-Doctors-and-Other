@@ -33,6 +33,12 @@ public partial class Enemy : NedaoProxy
 		get; set;
 	}
 
+	[Export]
+	public Sprite2D Sprite
+	{
+		get; set;
+	}
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -56,6 +62,9 @@ public partial class Enemy : NedaoProxy
 		var direction = ToLocal(nextPath).Normalized();
 
 		Velocity = direction * Target.Speed;
+
+		Sprite.FlipH = direction.X < 0;
+
 
 		MoveAndSlide();
 	}

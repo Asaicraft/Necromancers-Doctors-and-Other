@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 public partial class Gravedigger: NedaoProxy
 {
+	[Export]
+	public Sprite2D Sprite
+	{
+		get; set;
+	}
 
 	public override void _Ready()
 	{
 		base._Ready();
-
-		GD.Print("Gravedigger is ready!");
-		GD.Print($"Gravedigger AttackRange:{Target.AttackRange.TotalValue}");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -24,6 +26,9 @@ public partial class Gravedigger: NedaoProxy
 		var input = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 
 		Velocity = input * Target.Speed;
+
+		Sprite.FlipH = Velocity.X < 0;
+
 		MoveAndSlide();
 	}
 
