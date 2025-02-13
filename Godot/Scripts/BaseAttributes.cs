@@ -48,4 +48,10 @@ public abstract partial class BaseAttributes : Resource
     {
         get; set;
     }
+
+    [Export]
+    public float HpRegen
+    {
+        get; set;
+    }
 }

@@ -153,6 +153,8 @@ public partial class NedaoObject
 
     public readonly NedaoProperty<float> BaseAttackTime = [];
 
+    public readonly NedaoProperty<float> HpRegen = [];
+
     public virtual void TakeExp(int exp)
     {
         Exp += exp;
@@ -185,6 +187,8 @@ public partial class NedaoObject
 
         Effects.Update(delta);
         AttackBehavior.Update(delta);
+
+        Health += HpRegen.TotalValue * (float)delta;
     }
 
     public virtual bool TryAttackNedao(NedaoObject nedaoObject)

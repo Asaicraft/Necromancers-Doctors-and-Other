@@ -18,6 +18,7 @@ public class SimpleGainModifier : GainModifier
     public readonly NedaoProperty<float> AttackSpeed = [];
     public readonly NedaoProperty<float> AttackRange = [];
     public readonly NedaoProperty<float> BaseAttackTime = [];
+    public readonly NedaoProperty<float> HpRegen = [];
 
     /// <inheritdoc />
     public override void ApplyGain(NedaoObject nedaoObject, int levelDifference)

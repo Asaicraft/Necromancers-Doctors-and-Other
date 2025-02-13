@@ -31,5 +31,6 @@ public sealed partial class StatsProxy: BaseAttributes
         nedaoObject.AttackSpeed.BaseValue = AttackSpeed;
         nedaoObject.AttackRange.BaseValue = AttackRange;
         nedaoObject.BaseAttackTime.BaseValue = BaseAttackTime;
+        nedaoObject.HpRegen.BaseValue = HpRegen;
     }
 }

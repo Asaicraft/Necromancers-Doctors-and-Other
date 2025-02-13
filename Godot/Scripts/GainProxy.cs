@@ -21,6 +21,7 @@ public sealed partial class GainProxy: BaseAttributes
             gainModifier.AttackSpeed.BaseValue = AttackSpeed;
             gainModifier.AttackRange.BaseValue = AttackRange;
             gainModifier.BaseAttackTime.BaseValue = BaseAttackTime;
+            gainModifier.HpRegen.BaseValue = HpRegen;
         }
     }
 }
