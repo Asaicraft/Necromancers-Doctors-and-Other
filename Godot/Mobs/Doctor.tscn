@@ -14,10 +14,11 @@ Stats = ExtResource("3_eihag")
 Gain = ExtResource("4_rmcyl")
 
 [node name="Necromancers,Doctors,AndOtherPervertsВрач" type="Sprite2D" parent="." index="0"]
+y_sort_enabled = true
 texture = ExtResource("3_vhfjp")
 
-[node name="MobCollision" parent="." index="1"]
-position = Vector2(16, 83)
+[node name="MobCollision" parent="." index="2"]
+position = Vector2(20, 145)
 
-[node name="AttackProxy" parent="." index="2" node_paths=PackedStringArray("Nedao")]
+[node name="AttackProxy" parent="." index="3" node_paths=PackedStringArray("Nedao")]
 Nedao = NodePath("..")

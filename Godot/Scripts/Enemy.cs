@@ -9,7 +9,8 @@ public partial class Enemy: NedaoProxy
 {
 	private Tombstone[] _tombstoneList = [];
 
-	[Export]
+
+    [Export]
 	public NavigationAgent2D NavigationAgent2D
 	{
 		get; set;
