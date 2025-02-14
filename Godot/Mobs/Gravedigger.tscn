@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://duseifehrtb41" path="res://Mobs/NedaoProxy.tscn" id="1_3th30"]
 [ext_resource type="Texture2D" uid="uid://bml3ncmpfjmr6" path="res://Sprites/Necromancers, Doctors, and Other Perverts_Гробовщик.png" id="1_3xcpx"]
-[ext_resource type="Script" path="res://Scripts/Gravedigger.cs" id="2_8fbry"]
+[ext_resource type="Script" path="res://Scripts/Mobs/Gravedigger.cs" id="2_8fbry"]
 [ext_resource type="Resource" uid="uid://dms681pyhiopg" path="res://Stats/Gravedigger.tres" id="3_4vpb0"]
 [ext_resource type="Resource" uid="uid://bff0e1k54louk" path="res://Gains/Default.tres" id="3_jqju2"]
 [ext_resource type="PackedScene" uid="uid://cddcwam78fjey" path="res://StatusBar.tscn" id="6_43yuv"]

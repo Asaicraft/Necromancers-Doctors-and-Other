@@ -8,5 +8,9 @@ using System.Threading.Tasks;
 namespace NecromancersDoctorsandOther.Scripts;
 public partial class SpawnPoint: Node2D
 {
-
+    [Export]
+    public MobRequest MobRequest
+    {
+        get; set;
+    }
 }

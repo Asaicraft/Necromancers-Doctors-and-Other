@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b1wyatlavyl2k"]
 
 [ext_resource type="PackedScene" uid="uid://dl3g7yklv23o1" path="res://Mobs/Enemy.tscn" id="1_s6qtm"]
-[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="2_jy7oe"]
+[ext_resource type="Script" path="res://Scripts/Mobs/Enemy.cs" id="2_jy7oe"]
 [ext_resource type="Resource" uid="uid://vnx8a7wji45g" path="res://Stats/Default.tres" id="3_eihag"]
 [ext_resource type="Texture2D" uid="uid://bys6j2xu8tabs" path="res://Sprites/Necromancers, Doctors, and Other Perverts_Врач.png" id="3_vhfjp"]
 [ext_resource type="Resource" uid="uid://bff0e1k54louk" path="res://Gains/Default.tres" id="4_rmcyl"]

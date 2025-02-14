@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dei182m5juus3"]
+[gd_scene load_steps=9 format=4 uid="uid://dei182m5juus3"]
 
 [ext_resource type="TileSet" uid="uid://dtslq7tpahh7o" path="res://TileSet.tres" id="1_rxijm"]
 [ext_resource type="Script" path="res://Scripts/GameLevel.cs" id="1_wnyut"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/GroundLayer.cs" id="2_f6adx"]
 [ext_resource type="PackedScene" uid="uid://b8p1t8hihki3t" path="res://Mobs/Tombstone.tscn" id="3_ha703"]
 [ext_resource type="PackedScene" uid="uid://b1wyatlavyl2k" path="res://Mobs/Doctor.tscn" id="4_am8df"]
+[ext_resource type="Script" path="res://Scripts/SpawnPoint.cs" id="7_w3rsn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sas6j"]
 vertices = PackedVector2Array(4785.3, 302.453, 3275.11, 253.031, 3520.94, 247.68, 4489.51, 226.617, 4796.18, 302.211, 4442.72, -117.063, 3535.39, -110.938, 2037.87, -129.141, -1971.14, -1568.03, 4792.08, -1590.96, 4804, -109.188, 1097.82, -113.844, -2029.84, 2362.05, 1105.18, 300.219, 4814.85, 2395.94, 2035.33, 279.992, 3265.74, -103.891, 2354.14, -114.109, 2348.73, 273.172)
@@ -74,3 +75,6 @@ position = Vector2(1767, 1287)
 
 [node name="Camera2D" type="Camera2D" parent="Gravedigger"]
 zoom = Vector2(0.6, 0.6)
+
+[node name="Spawnpoint" type="Node2D" parent="."]
+script = ExtResource("7_w3rsn")
