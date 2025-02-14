@@ -87,9 +87,17 @@ public partial class StatusBar : Node2D
         {
             return;
         }
+
         var children = HpDelimeters.GetChildren();
+
+        if(children.Count == 0)
+        {
+            return;
+        }
+
         var tempArray = ArrayPool<Node>.Shared.Rent(children.Count);
         children.CopyTo(tempArray, 0);
+
         try
         {
             for (var i = 0; i < children.Count; i++)

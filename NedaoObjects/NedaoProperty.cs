@@ -21,7 +21,62 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
     /// </summary>
     protected readonly List<PropertyModifier<T>> Bonuses = [];
 
+    /// <summary>
+    /// The base value of the property.
+    /// </summary>
     protected T _baseValue;
+
+    /// <summary>
+    /// The total bonus value applied to the base value.
+    /// </summary>
+    protected T _totalBonus;
+
+    /// <summary>
+    /// The final computed value of the property after applying all bonuses.
+    /// </summary>
+    protected T _totalValue;
+
+    /// <summary>
+    /// Occurs when <see cref="InvalidState"/> is called.
+    /// This event signals that the total value and bonuses are being recalculated.
+    /// </summary>
+    public event Action<T>? OnInvalidateStateCalled;
+
+    /// <summary>
+    /// Occurs before the base value of the property changes.
+    /// The event provides the new value before the update.
+    /// </summary>
+    public event Action<T>? OnBaseValueChanging;
+
+    /// <summary>
+    /// Occurs after the base value of the property has changed.
+    /// The event provides the updated value.
+    /// </summary>
+    public event Action<T>? OnBaseValueChanged;
+
+    /// <summary>
+    /// Occurs before the total bonus value changes.
+    /// The event provides the new total bonus before the update.
+    /// </summary>
+    public event Action<T>? OnTotalBonusChanging;
+
+    /// <summary>
+    /// Occurs after the total bonus value has changed.
+    /// The event provides the updated total bonus.
+    /// </summary>
+    public event Action<T>? OnTotalBonusChanged;
+
+    /// <summary>
+    /// Occurs before the total value of the property changes.
+    /// The event provides the new total value before the update.
+    /// </summary>
+    public event Action<T>? OnTotalValueChanging;
+
+    /// <summary>
+    /// Occurs after the total value of the property has changed.
+    /// The event provides the updated total value.
+    /// </summary>
+    public event Action<T>? OnTotalValueChanged;
 
     /// <summary>
     /// Gets or sets the base value of the property.
@@ -38,8 +93,8 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
     /// </summary>
     public T TotalBonus
     {
-        get;
-        protected set;
+        get => _totalBonus;
+        protected set => SetTotalBonus(value);
     }
 
     /// <summary>
@@ -47,8 +102,8 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
     /// </summary>
     public T TotalValue
     {
-        get;
-        protected set;
+        get => _totalValue;
+        protected set => SetTotalValue(value);
     }
 
     /// <summary>
@@ -58,15 +113,49 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
     /// <param name="value">The new base value.</param>
     protected virtual void SetBaseValue(T value)
     {
+        OnBaseValueChanging?.Invoke(value);
         _baseValue = value;
-        InvalidState();
+        OnBaseValueChanged?.Invoke(value);
+        InvalidStateCore();
+    }
+
+    /// <summary>
+    /// Sets the total bonus value and raises the corresponding events.
+    /// </summary>
+    /// <param name="value">The new total bonus value.</param>
+    protected virtual void SetTotalBonus(T value)
+    {
+        OnTotalBonusChanging?.Invoke(value);
+        _totalBonus = value;
+        OnTotalBonusChanged?.Invoke(value);
+    }
+
+    /// <summary>
+    /// Sets the total computed value and raises the corresponding events.
+    /// </summary>
+    /// <param name="value">The new total value.</param>
+    protected virtual void SetTotalValue(T value)
+    {
+        OnTotalValueChanging?.Invoke(value);
+        _totalValue = value;
+        OnTotalValueChanged?.Invoke(value);
     }
 
     /// <summary>
     /// Recalculates the total bonus and updates the total value.
     /// Should be called when bonuses change.
     /// </summary>
-    public virtual void InvalidState()
+    public void InvalidState()
+    {
+        OnInvalidateStateCalled?.Invoke(TotalValue);
+        InvalidStateCore();
+    }
+
+    /// <summary>
+    /// Performs the core logic of recalculating the total bonus and total value.
+    /// Called internally when the property state needs to be updated.
+    /// </summary>
+    protected virtual void InvalidStateCore()
     {
         CountBonuses();
         TotalValue = BaseValue + TotalBonus;
@@ -152,7 +241,7 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
     protected virtual void AddCore(PropertyModifier<T> bonus)
     {
         Bonuses.Add(bonus);
-        InvalidState();
+        InvalidStateCore();
     }
 
     /// <summary>
@@ -170,7 +259,7 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
         }
 
         Bonuses.Clear();
-        InvalidState();
+        InvalidStateCore();
     }
 
     /// <summary>
@@ -185,14 +274,19 @@ public class NedaoProperty<T> : ICollection<PropertyModifier<T>> where T : struc
 
         if (result)
         {
-            InvalidState();
+            InvalidStateCore();
         }
 
         return result;
     }
 
+    /// <summary>
+    /// Implicit conversion operator to retrieve the total value of the property.
+    /// </summary>
+    /// <param name="property">The property instance.</param>
     public static implicit operator T(NedaoProperty<T> property)
     {
         return property.TotalValue;
     }
 }
+
