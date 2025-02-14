@@ -8,10 +8,18 @@ using System.Threading.Tasks;
 
 public partial class StatusBar : Node2D
 {
+    private NedaoProxy? _target;
+
     [Export]
-    public NedaoProxy Target
+    public NedaoProxy? Target
     {
-        get; set;
+        get => _target;
+        set
+        {
+            ClearSubscription(_target);
+            _target = value;
+            Subscribe(_target);
+        }
     }
 
     [Export]
@@ -41,13 +49,19 @@ public partial class StatusBar : Node2D
         }
     }
 
-    public override void _Process(double delta)
+    public override void _ExitTree()
     {
-        if (Target == null)
+        ClearSubscription(_target);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (disposing)
         {
-            return;
+            ClearSubscription(_target);
         }
-        UpdateHpDelimeters();
     }
 
     private void UpdateHpDelimeters()
@@ -60,7 +74,7 @@ public partial class StatusBar : Node2D
         ClearHpDelimeters();
 
         var barWidth = HpDelimeters.OffsetRight;
-        var maxHp = Target.Target.MaxHealth.TotalValue;
+        var maxHp = Target!.Target.MaxHealth.TotalValue;
 
         var hpDelimeterCount = (int)(maxHp / HpPerHpDelimiter);
         var delimeterMargin = barWidth / hpDelimeterCount;
@@ -110,5 +124,29 @@ public partial class StatusBar : Node2D
         {
             ArrayPool<Node>.Shared.Return(tempArray);
         }
+    }
+
+    private void OnMaxHealthChanged(float maxHealth)
+    {
+        UpdateHpDelimeters();
+    }
+
+    private void ClearSubscription(NedaoProxy? nedaoProxy)
+    {
+        if(nedaoProxy == null)
+        {
+            return;
+        }
+
+        nedaoProxy.Target.MaxHealth.OnTotalValueChanged -= OnMaxHealthChanged;
+    }
+
+    private void Subscribe(NedaoProxy? nedaoProxy)
+    {
+        if (nedaoProxy == null)
+        {
+            return;
+        }
+        nedaoProxy.Target.MaxHealth.OnTotalValueChanged += OnMaxHealthChanged;
     }
 }
