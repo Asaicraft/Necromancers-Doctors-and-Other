@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="MobRequest" load_steps=2 format=3 uid="uid://beaq2h6lh8dat"]
-
-[ext_resource type="Script" path="res://Scripts/WaveSystem/MobRequest.cs" id="1_v22ko"]
-
-[resource]
-script = ExtResource("1_v22ko")

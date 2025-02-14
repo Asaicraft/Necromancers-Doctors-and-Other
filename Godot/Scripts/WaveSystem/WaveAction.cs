@@ -6,11 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 [GlobalClass]
-public partial class WaveOfMonsters: Resource
+public abstract partial class WaveAction: Resource
 {
-    
-    public List<SmallWave> SmallWaves
-    {
-        get; set;
-    }
+    public abstract void Execute(WaveContext context);
 }

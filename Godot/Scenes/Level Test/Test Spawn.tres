@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SpawnInfo" load_steps=2 format=3 uid="uid://c0cln7kormsg0"]
+
+[ext_resource type="Script" path="res://Scripts/WaveSystem/SpawnInfo.cs" id="1_e6i43"]
+
+[resource]
+script = ExtResource("1_e6i43")
+Actions = null
+Points = 0
+MinDelay = 0.6
+MaxDelay = 3.1

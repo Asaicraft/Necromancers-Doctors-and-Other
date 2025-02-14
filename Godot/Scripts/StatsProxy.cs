@@ -17,6 +17,12 @@ public sealed partial class StatsProxy: BaseAttributes
         get; set;
     }
 
+    [Export]
+    public int Level
+    {
+        get; set;
+    }
+
     /// <summary>
     /// Applies the stored stats to the specified <see cref="NedaoObject"/>.
     /// </summary>
@@ -31,7 +37,7 @@ public sealed partial class StatsProxy: BaseAttributes
         nedaoObject.AttackSpeed.BaseValue = AttackSpeed;
         nedaoObject.AttackRange.BaseValue = AttackRange;
         nedaoObject.BaseAttackTime.BaseValue = BaseAttackTime;
-        GD.Print("Base attack time: " + BaseAttackTime);
         nedaoObject.HpRegen.BaseValue = HpRegen;
+        nedaoObject.Level = Level;
     }
 }

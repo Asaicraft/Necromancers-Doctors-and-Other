@@ -1,15 +1,19 @@
 ﻿using Godot;
-using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-[Tool]
 [GlobalClass]
 public partial class MobRequest : Resource
 {
+    [Export]
+    public PackedScene Enemy 
+    { 
+        get; set; 
+    }
+
     [Export]
     public StatsProxy Stats
     {
@@ -22,15 +26,37 @@ public partial class MobRequest : Resource
         get; set;
     }
 
+    [ExportGroup("Random")]
     [Export]
-    public PackedScene? Enemy
+    public int Cost
     {
         get; set;
     }
 
     [Export]
-    public int Cost
+    public double Probability
     {
         get; set;
+    } = 1;
+
+    [Export]
+    public double MinDelay
+    {
+        get; set;
+    } = 0.6d;
+
+    [Export]
+    public double MaxDelay
+    {
+        get; set;
+    } = 3.1d;
+
+    public Enemy Instantiate()
+    {
+        var mob = (Enemy)Enemy.Instantiate();
+        mob.Stats = Stats;
+        mob.Gain = Gain;
+
+        return mob;
     }
 }
