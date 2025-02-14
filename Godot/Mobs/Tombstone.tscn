@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://b8p1t8hihki3t"]
 
-[ext_resource type="PackedScene" uid="uid://duseifehrtb41" path="res://Mobs/NedaoProxy.tscn" id="1_1pem4"]
+[ext_resource type="PackedScene" uid="uid://eemb7u5gbn5b" path="res://Mobs/Ally.tscn" id="1_4nq4o"]
 [ext_resource type="Texture2D" uid="uid://dp17r1v4velgk" path="res://Sprites/Necromancers, Doctors, and Other Perverts_Гроб.png" id="1_xb118"]
 [ext_resource type="Script" path="res://Scripts/Tombstone.cs" id="2_v6qa1"]
 [ext_resource type="Resource" uid="uid://bklm00f8aamyh" path="res://Stats/Tombstone.tres" id="3_8u6fx"]
 [ext_resource type="Resource" uid="uid://bjfo5ljn81cn7" path="res://Gains/TombstoneGain.tres" id="4_wg4b7"]
 
-[node name="Tombstone" instance=ExtResource("1_1pem4")]
+[node name="Tombstone" instance=ExtResource("1_4nq4o")]
 script = ExtResource("2_v6qa1")
 Stats = ExtResource("3_8u6fx")
 Gain = ExtResource("4_wg4b7")
@@ -15,5 +15,9 @@ Team = 3072
 [node name="Necromancers,Doctors,AndOtherPervertsГроб" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("1_xb118")
 
-[node name="AttackProxy" parent="." index="2" node_paths=PackedStringArray("Nedao")]
-Nedao = NodePath("..")
+[node name="StatusBar" parent="." index="3" node_paths=PackedStringArray("Target")]
+position = Vector2(0, -122)
+scale = Vector2(0.9, 0.9)
+Target = NodePath("..")
+
+[editable path="StatusBar"]

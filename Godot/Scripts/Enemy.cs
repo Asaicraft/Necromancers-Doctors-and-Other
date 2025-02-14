@@ -65,7 +65,6 @@ public partial class Enemy : NedaoProxy
 
 		Sprite.FlipH = direction.X < 0;
 
-
 		MoveAndSlide();
 	}
 

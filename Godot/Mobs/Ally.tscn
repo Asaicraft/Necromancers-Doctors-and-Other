@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://eemb7u5gbn5b"]
+
+[ext_resource type="PackedScene" uid="uid://duseifehrtb41" path="res://Mobs/NedaoProxy.tscn" id="1_41jkk"]
+[ext_resource type="PackedScene" uid="uid://cddcwam78fjey" path="res://StatusBar.tscn" id="2_muuyr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3qbx"]
+bg_color = Color(0.0938076, 0.14852, 0.348972, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_744jw"]
+bg_color = Color(0.377085, 0.492453, 0.949039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Ally" instance=ExtResource("1_41jkk")]
+
+[node name="StatusBar" parent="." index="2" instance=ExtResource("2_muuyr")]
+
+[node name="HpBar" parent="StatusBar" index="1"]
+theme_override_styles/background = SubResource("StyleBoxFlat_u3qbx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_744jw")
+
+[editable path="StatusBar"]

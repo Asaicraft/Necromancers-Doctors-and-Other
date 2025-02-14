@@ -136,9 +136,6 @@ public partial class StatusBar : Node2D
 
 		if(AttackCooldownBar != null)
 		{
-			GD.Print("AttackCooldown: " + AttackCooldown);
-			GD.Print("AttackCooldown / AttackCooldownMax: " + AttackCooldown / AttackCooldownMax);
-
 			AttackCooldownBar.Value = (1 - (AttackCooldown / AttackCooldownMax)) * 100;
 		}
 

@@ -62,17 +62,15 @@ polygon = PackedVector2Array(-2018, 2379, -2000, -1617, 816, -1625, 4808, -1593,
 z_index = 1
 position = Vector2(2298, 1092)
 
+[node name="Doctor" parent="." node_paths=PackedStringArray("GameLevel") instance=ExtResource("4_am8df")]
+z_index = 1
+position = Vector2(1190, 1762)
+GameLevel = NodePath("..")
+
 [node name="Gravedigger" parent="." instance=ExtResource("2_5akj7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1767, 1287)
 
 [node name="Camera2D" type="Camera2D" parent="Gravedigger"]
-zoom = Vector2(0.7, 0.7)
-
-[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("GameLevel") instance=ExtResource("4_am8df")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(1171, 1854)
-wall_min_slide_angle = 0.261799
-GameLevel = NodePath("..")
+zoom = Vector2(0.6, 0.6)

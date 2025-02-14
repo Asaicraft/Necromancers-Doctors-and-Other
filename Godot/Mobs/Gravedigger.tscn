@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://byi3ka7snbbm5"]
+[gd_scene load_steps=9 format=3 uid="uid://byi3ka7snbbm5"]
 
 [ext_resource type="PackedScene" uid="uid://duseifehrtb41" path="res://Mobs/NedaoProxy.tscn" id="1_3th30"]
 [ext_resource type="Texture2D" uid="uid://bml3ncmpfjmr6" path="res://Sprites/Necromancers, Doctors, and Other Perverts_Гробовщик.png" id="1_3xcpx"]
@@ -6,6 +6,20 @@
 [ext_resource type="Resource" uid="uid://dms681pyhiopg" path="res://Stats/Gravedigger.tres" id="3_4vpb0"]
 [ext_resource type="Resource" uid="uid://bff0e1k54louk" path="res://Gains/Default.tres" id="3_jqju2"]
 [ext_resource type="PackedScene" uid="uid://cddcwam78fjey" path="res://StatusBar.tscn" id="6_43yuv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4ln7"]
+bg_color = Color(0.0555399, 0.201751, 0.113271, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pndqs"]
+bg_color = Color(0.175849, 0.632671, 0.326783, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Gravedigger" node_paths=PackedStringArray("Sprite") instance=ExtResource("1_3th30")]
 script = ExtResource("2_8fbry")
@@ -32,3 +46,10 @@ Nedao = NodePath("..")
 z_index = 100
 position = Vector2(0, -229)
 Target = NodePath("..")
+
+[node name="HpBar" parent="StatusBar" index="1"]
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_l4ln7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pndqs")
+
+[editable path="StatusBar"]
