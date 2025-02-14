@@ -251,7 +251,7 @@ public partial class NedaoObject
         return (ArmorFormulaFactor * Armor) / (ArmorFormulaBase + ArmorFormulaFactor * Math.Abs(Armor));
     }
 
-    protected virtual float CalculateAttackSpeed()
+    public virtual float CalculateAttackSpeed()
     {
         return ((100+AttackSpeed) / (100*BaseAttackTime));
     }

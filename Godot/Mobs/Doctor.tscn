@@ -16,6 +16,7 @@ Stats = ExtResource("3_eihag")
 Gain = ExtResource("4_rmcyl")
 Team = 10
 Enemies = 1
+CanAttack = true
 
 [node name="Necromancers,Doctors,AndOtherPervertsВрач" type="Sprite2D" parent="." index="0"]
 y_sort_enabled = true

@@ -80,11 +80,10 @@ public partial class AttackProxy : Area2D
 			for (var i = 0; i < _nedaoProxies.Count; i++)
 			{
 				var enemy = temp[i];
-
 #if RELEASE
 				subject.TryAttack(enemy);
 #elif DEBUG
-				if (subject.TryAttack(enemy))
+                if (subject.TryAttack(enemy))
 				{
 					GD.Print($"{subject.Name} attack {enemy.Name}; Enemy health: {enemy.Target.Health}");
 				}
@@ -141,7 +140,8 @@ public partial class AttackProxy : Area2D
 
 	public static bool IsEnemy(NedaoProxy attacker, NedaoProxy defender)
 	{
-		return (attacker.Enemies & defender.Team) != 0;
+		GD.Print($"Attacker: {attacker.Name}; Defender: {defender.Name}; Result of (attacker.Enemies & defender.Team) != 0: {(attacker.Enemies & defender.Team) != 0}");
+        return (attacker.Enemies & defender.Team) != 0;
 	}
 
 }
