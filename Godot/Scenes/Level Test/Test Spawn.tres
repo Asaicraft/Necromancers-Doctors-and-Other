@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="SpawnInfo" load_steps=2 format=3 uid="uid://c0cln7kormsg0"]
+[gd_resource type="Resource" script_class="SpawnInfo" load_steps=3 format=3 uid="uid://c0cln7kormsg0"]
 
 [ext_resource type="Script" path="res://Scripts/WaveSystem/SpawnInfo.cs" id="1_e6i43"]
+[ext_resource type="Resource" uid="uid://e2xbs4j45yy5" path="res://Scenes/Level Test/Wave 1.tres" id="1_y7mqk"]
 
 [resource]
 script = ExtResource("1_e6i43")
-Actions = null
+Actions = Array[Object]([ExtResource("1_y7mqk")])
 Points = 0
 MinDelay = 0.6
 MaxDelay = 3.1

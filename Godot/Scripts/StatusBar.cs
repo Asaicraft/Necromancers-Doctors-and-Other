@@ -190,11 +190,6 @@ public partial class StatusBar : Node2D
 		HpDelimeters.OffsetLeft = delimeterMargin;
 		HpDelimeters.AddThemeConstantOverride("separation", (int)delimeterMargin);
 
-		GD.Print("BarWidth: " + barWidth);
-		GD.Print("MaxHp: " + HpMax);
-		GD.Print("HpDelimeterCount: " + hpDelimeterCount);
-		GD.Print("DelimeterMargin: " + delimeterMargin);
-
 		// Skip the first delimeter
 		for (var i = 1; i < hpDelimeterCount; i++)
 		{

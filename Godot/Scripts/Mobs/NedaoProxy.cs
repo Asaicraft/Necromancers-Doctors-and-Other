@@ -6,127 +6,111 @@ using System;
 
 public partial class NedaoProxy : CharacterBody2D
 {
-	/// <summary>
-	/// Prefers to use the target property instead of this field.
-	/// </summary>
-	private NedaoObject? _target;
+    /// <summary>
+    /// Prefers to use the target property instead of this field.
+    /// </summary>
+    private NedaoObject? _target;
 
-	[Export]
-	public StatsProxy Stats
-	{
-		get; set;
-	} = new();
+    [Export]
+    public StatsProxy Stats
+    {
+        get; set;
+    } = new();
 
-	[ExportGroup("Level")]
-	[Export]
-	public int Level
-	{
-		get; set;
-	} = 1;
+    
+    [Export]
+    public GainProxy Gain
+    {
+        get; set;
+    } = new();
 
-	[Export]
-	public int Exp
-	{
-		get; set;
-	}
+    [ExportGroup("Teams And Enemies")]
+    [Export]
+    public Mobs Team
+    {
+        get; set;
+    }
 
-	/// <summary>
-	/// If true, the level is set before gaining experience.
-	/// Be aware that the level may increase as a result.
-	/// </summary>
-	[Export]
-	public bool SetLevelBeforeGain
-	{
-		get; set;
-	} = true;
-
-	[Export]
-	public GainProxy Gain
-	{
-		get; set;
-	} = new();
-
-	[ExportGroup("Teams And Enemies")]
-	[Export]
-	public Mobs Team
-	{
-		get; set;
-	}
-
-	[Export]
-	public Mobs Enemies
-	{
-		get; set;
-	}
+    [Export]
+    public Mobs Enemies
+    {
+        get; set;
+    }
 
 
-	[ExportGroup("Anothers")]
-	[Export]
-	public bool CanAttack
-	{
-		get; set;
-	}
+    [ExportGroup("Anothers")]
+    [Export]
+    public bool CanAttack
+    {
+        get; set;
+    }
 
 
-	public NedaoObject Target
-	{
-		get => _target ??= CreateTarget();
-	}
+    public NedaoObject Target
+    {
+        get => _target ??= CreateTarget();
+    }
 
+    public override void _Ready()
+    {
+        InitNedao();
+    }
 
-	public override void _Ready()
-	{
-		Stats.ApplyTo(Target);
+    public virtual void InitNedao()
+    {
+        GD.Print("NedaoProxy._Ready(); Name: " + Name);
 
-		if (SetLevelBeforeGain)
-		{
-			Target.Level = Level;
+        Stats.ApplyTo(Target);
 
-			// Warning: The level may increase, which may not be intended.
-			Target.TakeExp(Exp);
-		}
+        if (Stats.SetLevelBeforeGain)
+        {
+            Target.Level = Stats.Level;
 
-		Gain.ApplyTo(Target);
+            // Warning: The level may increase, which may not be intended.
+            Target.TakeExp(Stats.Exp);
+        }
 
-		if (!SetLevelBeforeGain)
-		{
-			Target.Level = Level;
+        Gain.ApplyTo(Target);
 
-			// Warning: The level may increase, which may not be intended.
-			Target.TakeExp(Exp);
-		}
-	}
+        if (!Stats.SetLevelBeforeGain)
+        {
+            Target.Level = Stats.Level;
 
-	public override void _Process(double delta)
-	{
-		base._Process(delta);
+            // Warning: The level may increase, which may not be intended.
+            Target.TakeExp(Stats.Exp);
+        }
+    }
 
-		Target.Update(delta);
-	}
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
 
-	public virtual bool TryAttack(NedaoProxy nedaoProxy)
-	{
-		return Target.TryAttackNedao(nedaoProxy.Target);
-	}
+        Target.Update(delta);
+    }
 
-	/// <summary>
-	/// Creates and initializes a new <see cref="NedaoObject"/> instance.
-	/// This method is called lazily when accessing the <see cref="Target"/> property for the first time.
-	/// Designed to be overridden in derived classes to customize object creation.
-	/// </summary>
-	/// <returns>A new instance of <see cref="NedaoObject"/>.</returns>
-	protected virtual NedaoObject CreateTarget()
-	{
-		return new();
-	}
+    public virtual bool TryAttack(NedaoProxy nedaoProxy)
+    {
+        return Target.TryAttackNedao(nedaoProxy.Target);
+    }
 
-	private static int ValidateLevel(int value)
-	{
-		if (value < 1)
-		{
-			return 1;
-		}
+    /// <summary>
+    /// Creates and initializes a new <see cref="NedaoObject"/> instance.
+    /// This method is called lazily when accessing the <see cref="Target"/> property for the first time.
+    /// Designed to be overridden in derived classes to customize object creation.
+    /// </summary>
+    /// <returns>A new instance of <see cref="NedaoObject"/>.</returns>
+    protected virtual NedaoObject CreateTarget()
+    {
+        return new();
+    }
 
-		return value > NedaoObject.MaxLevel ? NedaoObject.MaxLevel : value;
-	}
+    private static int ValidateLevel(int value)
+    {
+        if (value < 1)
+        {
+            return 1;
+        }
+
+        return value > NedaoObject.MaxLevel ? NedaoObject.MaxLevel : value;
+    }
 }

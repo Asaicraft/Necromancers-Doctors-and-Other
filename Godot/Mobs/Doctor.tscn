@@ -19,6 +19,7 @@ Enemies = 2049
 CanAttack = true
 
 [node name="Necromancers,Doctors,AndOtherPervertsВрач" type="Sprite2D" parent="." index="0"]
+z_index = 1
 y_sort_enabled = true
 texture = ExtResource("3_vhfjp")
 

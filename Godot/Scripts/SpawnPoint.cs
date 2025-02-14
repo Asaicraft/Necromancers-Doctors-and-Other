@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -18,6 +18,12 @@ public partial class SpawnPoint : Node2D
         get; set;
     }
 
+    [Export]
+    public GameLevel GameLevel
+    {
+        get; set;
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -28,7 +34,7 @@ public partial class SpawnPoint : Node2D
             return;
         }
 
-
+        NextWave();
     }
 
     public override void _Process(double delta)
@@ -50,12 +56,14 @@ public partial class SpawnPoint : Node2D
 
     private void FinishWave()
     {
+        GD.Print("Wave finished");
+
         SpawnInfo.Points = _context!.WavePoints;
         _context = null;
 
-        NextWave();
-
         _waveIndex++;
+
+        NextWave();
     }
 
     protected virtual void NextWave()
@@ -86,6 +94,12 @@ public partial class SpawnPoint : Node2D
         if(_context is null)
         {
             GD.PrintErr("No context assigned");
+            return;
+        }
+
+        if(_waveIndex >= SpawnInfo.Actions.Count)
+        {
+            GD.PrintErr("No more waves to execute");
             return;
         }
 
@@ -195,8 +209,16 @@ public partial class SpawnPoint : Node2D
             }
 
             var mob = mobRequest.Instantiate();
-            var task = new DumpTask(() => _spawnPoint.AddChild(mob), delay);
+            mob.GlobalPosition = _spawnPoint.GlobalPosition;
+
+            var task = new DumpTask(() =>
+            {
+                _spawnPoint.GameLevel.AddChild(mob);
+
+            }, delay);
             _spawnPoint._tasks.Add(task);
+
+            mob.GameLevel = _spawnPoint.GameLevel;
 
             _enemies.Add(mob);
 
@@ -226,7 +248,7 @@ public partial class SpawnPoint : Node2D
 
             if (WaveEndCondition == WaveEndCondition.Time)
             {
-                _spawnPoint._tasks.Add(new DumpTask(FinishWave, WaveTime));
+                _spawnPoint._tasks.Add(new DumpTask(_spawnPoint.FinishWave, WaveTime));
             }
         }
     }

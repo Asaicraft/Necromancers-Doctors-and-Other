@@ -17,11 +17,28 @@ public sealed partial class StatsProxy: BaseAttributes
         get; set;
     }
 
+    [ExportGroup("Level")]
     [Export]
     public int Level
     {
         get; set;
+    } = 1;
+
+    [Export]
+    public int Exp
+    {
+        get; set;
     }
+
+    /// <summary>
+    /// If true, the level is set before gaining experience.
+    /// Be aware that the level may increase as a result.
+    /// </summary>
+    [Export]
+    public bool SetLevelBeforeGain
+    {
+        get; set;
+    } = true;
 
     /// <summary>
     /// Applies the stored stats to the specified <see cref="NedaoObject"/>.
@@ -38,6 +55,5 @@ public sealed partial class StatsProxy: BaseAttributes
         nedaoObject.AttackRange.BaseValue = AttackRange;
         nedaoObject.BaseAttackTime.BaseValue = BaseAttackTime;
         nedaoObject.HpRegen.BaseValue = HpRegen;
-        nedaoObject.Level = Level;
     }
 }

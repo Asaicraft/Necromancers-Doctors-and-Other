@@ -41,6 +41,7 @@ corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
 [node name="StatusBar" type="Node2D" node_paths=PackedStringArray("HpBar", "HpLabel", "AttackCooldownBar", "HpDelimeters", "ExpProgressBar", "LevelLabel")]
+z_index = 100
 script = ExtResource("1_xx46c")
 HpBar = NodePath("HpBar")
 HpLabel = NodePath("HpLabel")

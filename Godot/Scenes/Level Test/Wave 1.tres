@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="SpawnEnemies" load_steps=7 format=3 uid="uid://e2xbs4j45yy5"]
+
+[ext_resource type="PackedScene" uid="uid://b1wyatlavyl2k" path="res://Mobs/Doctor.tscn" id="1_iijhm"]
+[ext_resource type="Script" path="res://Scripts/WaveSystem/MobRequest.cs" id="2_1ol3a"]
+[ext_resource type="Resource" uid="uid://bi0q8s57eiev2" path="res://Stats/Default25.tres" id="3_qwgjw"]
+[ext_resource type="Script" path="res://Scripts/WaveSystem/SpawnEnemies.cs" id="4_ffral"]
+
+[sub_resource type="Resource" id="Resource_8a83d"]
+script = ExtResource("2_1ol3a")
+Enemy = ExtResource("1_iijhm")
+Cost = 0
+Probability = 1.0
+MinDelay = 0.6
+MaxDelay = 3.1
+
+[sub_resource type="Resource" id="Resource_biodf"]
+script = ExtResource("2_1ol3a")
+Enemy = ExtResource("1_iijhm")
+Stats = ExtResource("3_qwgjw")
+Cost = 0
+Probability = 1.0
+MinDelay = 0.6
+MaxDelay = 3.1
+
+[resource]
+script = ExtResource("4_ffral")
+Mobs = Array[Object]([SubResource("Resource_8a83d"), SubResource("Resource_biodf")])

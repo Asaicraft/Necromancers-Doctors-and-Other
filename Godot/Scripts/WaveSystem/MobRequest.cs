@@ -54,8 +54,9 @@ public partial class MobRequest : Resource
     public Enemy Instantiate()
     {
         var mob = (Enemy)Enemy.Instantiate();
-        mob.Stats = Stats;
-        mob.Gain = Gain;
+
+        mob.Stats = Stats ?? mob.Stats;
+        mob.Gain = Gain ?? mob.Gain;
 
         return mob;
     }
