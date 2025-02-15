@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 public partial class SpawnInfo: Resource
 {
     [Export]
-    public Array<WaveAction> Actions
+    public Array<WaveAction>? Actions
     {
         get; set;
     }

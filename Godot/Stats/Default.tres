@@ -5,6 +5,9 @@
 [resource]
 script = ExtResource("1_b6y7y")
 Health = 100.0
+Level = 1
+Exp = 0
+SetLevelBeforeGain = true
 MaxHealth = 100.0
 Damage = 4.0
 Armor = 2.0
@@ -12,3 +15,4 @@ Speed = 300.0
 AttackSpeed = 120.0
 AttackRange = 140.0
 BaseAttackTime = 1.7
+HpRegen = 0.0
